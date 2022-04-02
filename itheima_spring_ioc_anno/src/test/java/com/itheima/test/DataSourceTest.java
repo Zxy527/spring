@@ -4,7 +4,10 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidPooledConnection;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.util.ResourceBundle;
@@ -16,6 +19,16 @@ import java.util.ResourceBundle;
  * @version: 1.0
  */
 public class DataSourceTest {
+    @Test
+    //测试spring容器产生c3p0数据源(加载配置properties配置文件)
+    public void test4() throws Exception {
+        ApplicationContext app=new ClassPathXmlApplicationContext("applicationContext.xml");
+//        Object dataSource = app.getBean("dataSource");
+        DataSource dataSource = app.getBean(DataSource.class);
+        Connection connection = dataSource.getConnection();
+        System.out.println(connection);
+        connection.close();//释放资源
+    }
 
     @Test
     //测试手动创建c3p0数据源(加载配置properties配置文件)
