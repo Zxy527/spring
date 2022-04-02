@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="itheima_spring_ioc:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/itheima_spring_ioc_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="itheima_spring_ioc/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="itheima_spring_ioc" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

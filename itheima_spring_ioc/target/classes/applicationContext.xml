@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl"></bean>-->
+<!--      <bean id="userDao" class="com.itheima.factory.StaticFactory" factory-method="getUserDao"></bean>-->
+<!--      <bean id="factory" class="com.itheima.factory.DynamicFactory"></bean>-->
+<!--      <bean id="userDao" factory-bean="factory" factory-method="getUserDao"/>-->
+
+      <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl"></bean>
+<!--      <bean id="userService" class="com.itheima.service.impl.UserServiceImpl">-->
+<!--&lt;!&ndash;            这个name指的是在service中set方法后面的名字setUserDaoz中的UserDao，只不过将第一个字母小写&ndash;&gt;-->
+<!--            <property name="userDao" ref="userDao"></property>-->
+<!--&lt;!&ndash;            要把容器中的userDao通过UserService内部的set方法注给它&ndash;&gt;-->
+<!--      </bean>-->
+      <bean id="userService" class="com.itheima.service.impl.UserServiceImpl" p:userDao-ref="userDao"/>
+
+</beans>
