@@ -9,10 +9,44 @@
 <!--      <bean id="factory" class="com.itheima.factory.DynamicFactory"></bean>-->
 <!--      <bean id="userDao" factory-bean="factory" factory-method="getUserDao"/>-->
 
-      <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl">
+<!--    普通数据类型注入-->
+   <!--   <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl">
             <property name="username" value="zhangsan"/>
             <property name="age" value="18"/>
-      </bean>
+      </bean>-->
+<!--  集合的注入-->
+    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl">
+        <property name="stringList">
+             <list>
+                 <value>aaaa</value>
+                 <value>bbbb</value>
+                 <value>cccc</value>
+             </list>
+        </property>
+        <property name="userMap">
+            <map>
+                <entry  key="u1" value-ref="user1"></entry>
+                <entry  key="u2" value-ref="user2"></entry>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="p1">ppp</prop>
+                <prop key="p2">ppp2</prop>
+                <prop key="p3">ppp3</prop>
+                <prop key="p4">ppp4</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="user1" class="com.itheima.domain.User">
+        <property name="name" value="Tom"></property>
+        <property name="address" value="beijing"></property>
+    </bean>
+    <bean id="user2" class="com.itheima.domain.User">
+        <property name="name" value="lucy"></property>
+        <property name="address" value="changsha"></property>
+    </bean>
 <!--      <bean id="userService" class="com.itheima.service.impl.UserServiceImpl">-->
 <!--&lt;!&ndash;            这个name指的是在service中set方法后面的名字setUserDaoz中的UserDao，只不过将第一个字母小写&ndash;&gt;-->
 <!--            <property name="userDao" ref="userDao"></property>-->
