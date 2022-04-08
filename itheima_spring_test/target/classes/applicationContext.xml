@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:contex="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    doa层要通过jdbc模板进行访问-->
+<!--1、加载jdbc.properties,通过context下得命名空间加载，所以得先手动引用一下context命名空间-->
+    <contex:property-placeholder location="classpath:jdbc.properties"/>
+
+<!--    配置数据对象-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.Driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+<!--    配置jdbc模板-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource"  ref="dataSource"></property>
+    </bean>
+
+<!--    配置RoleService-->
+    <bean id="roleService" class="com.itheima.service.impl.RoleServiceImpl">
+        <property name="roleDao" ref="roleDao"/>
+    </bean>
+
+<!--    配置RoleDao-->
+    <bean id="roleDao" class="com.itheima.dao.impl.RoleDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+</beans>
