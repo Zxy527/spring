@@ -1,5 +1,7 @@
 package com.itheima.domain;
 
+import java.util.List;
+
 public class User {
 
     private Long id;
@@ -7,6 +9,17 @@ public class User {
     private String email;
     private String password;
     private String phoneNum;
+
+    //当前用户具备哪些角色：实体与实体之间关系描述是通过对象引用
+    private List<Role> roles;//list一个用户具备多个角色，而内部是role
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public Long getId() {
         return id;

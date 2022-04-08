@@ -26,4 +26,10 @@ public class RoleDaoImpl implements RoleDao {
         List<Role> roleList = jdbcTemplate.query("select * from sys_role", new BeanPropertyRowMapper<Role>(Role.class));
         return roleList;
     }
+
+    @Override
+    public void save(Role role) {
+        //通过jdbc模板保存,id是自增的，所以写个null
+        jdbcTemplate.update("insert into sys_role values(?,?,?)",null,role.getRoleName(),role.getRoleDesc());
+    }
 }

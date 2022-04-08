@@ -33,4 +33,15 @@
     <bean id="roleDao" class="com.itheima.dao.impl.RoleDaoImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
+
+<!--    配置UserService-->
+    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+        <property name="roleDao" ref="roleDao"/>
+    </bean>
+
+<!--    配置UserDao-->
+    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
 </beans>
